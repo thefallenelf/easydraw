@@ -1,0 +1,25 @@
+# Gradle
+.gradle/
+build/
+app/build/
+local.properties
+*.iml
+.idea/
+
+# 构建产物
+*.apk
+*.aab
+*.keystore
+*.jks
+E_apk-build-tmp/
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# IDE 工具缓存
+.easier-code/
+
+# 临时
+*.log
+captures/
