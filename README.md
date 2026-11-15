@@ -70,7 +70,7 @@
 
 ## 安装
 
-1. 前往 [Releases](../../releases) 下载最新 `简画_vX.X.X.apk`
+1. 前往 [Releases](../../releases/latest) 下载最新 APK（当前：[v1.10.0](https://github.com/thefallenelf/easydraw/releases/download/v1.10.0/jianhua-v1.10.0.apk)）
 2. 拷贝到平板 / 手机，点击安装（首次需允许「安装未知来源应用」）
 3. 打开即可画，无需任何设置
 
