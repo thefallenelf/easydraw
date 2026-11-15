@@ -18,16 +18,16 @@ object ExportUtil {
 
     fun authority(context: Context): String = context.packageName + ".fileprovider"
 
-    /** 导出为 PNG 到公共相册 Pictures/念初的画画板 */
+    /** 导出为 PNG 到公共相册 Pictures/简画 */
     fun exportPng(context: Context, bitmap: android.graphics.Bitmap, title: String): Uri? {
         val name = sanitize(title)
-        val fn = "念初_${name}_${System.currentTimeMillis()}.png"
+        val fn = "简画_${name}_${System.currentTimeMillis()}.png"
         return if (Build.VERSION.SDK_INT >= 29) {
             val resolver = context.contentResolver
             val values = android.content.ContentValues().apply {
                 put(MediaStore.Images.Media.DISPLAY_NAME, fn)
                 put(MediaStore.Images.Media.MIME_TYPE, "image/png")
-                put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/念初的画画板")
+                put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/简画")
                 put(MediaStore.Images.Media.DATE_ADDED, System.currentTimeMillis() / 1000)
             }
             val uri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
@@ -37,7 +37,7 @@ object ExportUtil {
             }
             uri
         } else {
-            val dir = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "念初的画画板")
+            val dir = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "简画")
             if (!dir.exists() && !dir.mkdirs()) return null
             val f = File(dir, fn)
             FileOutputStream(f).use { out ->

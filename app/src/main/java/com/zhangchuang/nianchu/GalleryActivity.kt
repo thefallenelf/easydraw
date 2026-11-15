@@ -40,7 +40,7 @@ class GalleryActivity : AppCompatActivity() {
             setPadding(24.dp(), 24.dp(), 24.dp(), 8.dp())
         }
         top.addView(TextView(this).apply {
-            text = "念初的画画板"
+            text = "简画"
             textSize = 22f
             setTextColor(0xFF333333.toInt())
             layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)

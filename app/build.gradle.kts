@@ -1,7 +1,18 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
 }
+
+// 签名信息从 local.properties 读取（该文件不纳入版本库）
+val localProps = Properties().apply {
+    val f = rootProject.file("local.properties")
+    if (f.exists()) f.inputStream().use { load(it) }
+}
+
+fun signingValue(key: String): String? =
+    localProps.getProperty(key)?.takeIf { it.isNotBlank() } ?: System.getenv(key)
 
 android {
     namespace = "com.zhangchuang.nianchu"
@@ -11,26 +22,29 @@ android {
         applicationId = "com.zhangchuang.nianchu"
         minSdk = 26
         targetSdk = 35
-        versionCode = 17
-        versionName = "1.9.2"
+        versionCode = 18
+        versionName = "1.10.0"
     }
 
     signingConfigs {
-        create("release") {
-            storeFile = file("E:/apk-build-tmp/keystore/nianchu-release.jks")
-            storePassword = "ZcCreative2026@nianchu"
-            keyAlias = "nianchu"
-            keyPassword = "ZcCreative2026@nianchu"
+        val storePath = signingValue("RELEASE_STORE_FILE")
+        if (storePath != null && file(storePath).exists()) {
+            create("release") {
+                storeFile = file(storePath)
+                storePassword = signingValue("RELEASE_STORE_PASSWORD")
+                keyAlias = signingValue("RELEASE_KEY_ALIAS")
+                keyPassword = signingValue("RELEASE_KEY_PASSWORD")
+            }
         }
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
-            signingConfig = signingConfigs.getByName("release")
+            signingConfigs.findByName("release")?.let { signingConfig = it }
         }
         debug {
-            signingConfig = signingConfigs.getByName("release")
+            signingConfigs.findByName("release")?.let { signingConfig = it }
         }
     }
 

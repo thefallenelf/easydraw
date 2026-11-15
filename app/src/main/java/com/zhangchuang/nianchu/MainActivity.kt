@@ -65,7 +65,7 @@ class MainActivity : Activity() {
     companion object {
         const val EXTRA_PROJECT_ID = "project_id"
         private const val TAG = "MainActivity"
-        private const val VERSION = "1.9.2"
+        private const val VERSION = "1.10.0"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -538,7 +538,7 @@ class MainActivity : Activity() {
         val uri = ExportUtil.exportPng(this, comp, projectTitle)
         comp.recycle()
         Toast.makeText(this,
-            if (uri != null) "已保存到相册「念初的画画板」" else "导出失败",
+            if (uri != null) "已保存到相册「简画」" else "导出失败",
             Toast.LENGTH_SHORT).show()
     }
 
@@ -594,7 +594,7 @@ class MainActivity : Activity() {
             .setNegativeButton("关闭", null)
             .setNeutralButton("关于") { _, _ ->
                 MaterialAlertDialogBuilder(this)
-                    .setTitle("念初的画画板")
+                    .setTitle("简画")
                     .setMessage("版本 v$ver\n开发者 ZhangChuang\n\n" +
                         "· 各面板均可用图钉切换常驻/自动隐藏\n" +
                         "· 点击工具/按钮会显示中文名称提示\n" +
