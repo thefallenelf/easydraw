@@ -23,3 +23,7 @@ Thumbs.db
 # 临时
 *.log
 captures/
+
+# 参考资料图片（不希望进仓库）
+自定义颜色*.png
+*.png.bak
