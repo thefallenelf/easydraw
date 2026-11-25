@@ -1,14 +1,8 @@
-# 念初的画画板
+# 简画
 
+极简无广告的安卓画板APP，适合给小孩子用
 适用于安卓平板/手机的极简手绘画板 APP（Kotlin 自绘，无重型依赖）。
 
-## APK 位置
-
-- `E:\apk-build-tmp\念初的画画板_v1.0.0.apk`（release 签名包，可直接安装，约 4.4MB）
-- 构建产物：`C:\Users\ZC\画板\app\build\outputs\apk\release\app-release.apk`
-
-签名：自签名（开发者 ZhangChuang），keystore 在 `E:\apk-build-tmp\keystore\nianchu-release.jks`，
-密码写在 `app/build.gradle.kts` 的 signingConfigs 中。
 
 ## 功能
 
@@ -24,17 +18,7 @@
 - **导出 / 分享**：一键导出 PNG 到相册 `Pictures/念初的画画板`，可系统分享
 - **画廊**：网格展示所有画作（缩略图 + 标题 + 时间），点击续画，长按重命名 / 删除
 
-## 构建方式（本机）
 
-```bash
-cd C:\Users\ZC\画板
-set JAVA_HOME=E:\Tools\jdk-21.0.13+9
-set GRADLE_USER_HOME=D:\gradle-home       # Gradle 缓存放 D 盘
-E:\gradle-dist\gradle-8.9\bin\gradle.bat :app:assembleRelease
-```
-
-SDK 在 `E:\android-sdk`（platform 35 + build-tools 35 + platform-tools + cmdline-tools）。
-`gradle.properties`（项目内）与 `D:\gradle-home\gradle.properties` 已配置 Java/路径相关项。
 
 ## 工程结构
 
@@ -55,8 +39,3 @@ app/src/main/java/com/zhangchuang/nianchu/
   Icons.kt             细线图标
 ```
 
-## 已知边界
-
-- 形状/填充/像素橡皮/取色按「操作回放」实现，撤销是操作级（非像素级）。
-- 图层内容以 PNG 落盘（保留透明通道），因此旋转重载即回到旧分辨率；跨屏适配在会话内完成。
-- 笔迹坐标未做高频采样合并上限，长笔画会把点阵平铺到 op 内（可接受范围）。
